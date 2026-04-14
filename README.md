@@ -1,4 +1,5 @@
 # AI Fake Job Posting Detector
+🚀 **[Live App Demo: Click Here to Test the AI Tool](https://ai-fake-job-detectors.streamlit.app/#ai-brain-word-analysis)**
 
 A Machine Learning web application designed to protect job seekers from fake employment scams using Natural Language Processing (NLP) and a Rule-Based Engine.
 
