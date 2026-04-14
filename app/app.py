@@ -154,7 +154,7 @@ if st.button(" Analyze Job"):
                 st.write(f"- {r}")
             # Render the HTML from the LIME explainer    
             st.write("### AI Brain (Word Analysis)")
-            st.markdown("Yeh words AI ko sabse zyada **FAKE (Red)** ya **REAL (Green)** lag rahe hain:")
+            st.markdown("*Transparency Report: Words highlighted in **Red** indicate fraud risk, while **Green** indicates legitimacy.*")
             components.html(res["lime_html"], height=500, scrolling=False)
 
 
