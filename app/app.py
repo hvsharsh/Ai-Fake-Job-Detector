@@ -112,7 +112,8 @@ if st.button(" Analyze Job"):
             elif res["risk"] > 40:
                 st.warning(f" SUSPICIOUS ({res['risk']}%)")
             else:
-                st.success(f" REAL ({res['risk']}%)")
+                safe_score = 100 - res["risk"]
+                st.success(f" REAL ({safe_score}% Safe)")
 
             # Render an interactive Plotly Gauge chart
             fig = go.Figure(go.Indicator(

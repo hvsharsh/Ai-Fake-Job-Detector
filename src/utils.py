@@ -77,7 +77,8 @@ def email_check(text):
     if not emails:
         return "no_email"
 
-    domain = emails[0].split("@")[1].lower()
+    raw_domain = emails[0].split("@")[1].lower()
+    domain = raw_domain.rstrip('.')
 
     if domain in FREE_EMAIL_DOMAINS:
         return "free_email"
