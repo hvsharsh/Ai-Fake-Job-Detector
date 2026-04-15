@@ -2,7 +2,7 @@
 
 🚀 **[Live App Demo: Click Here to Test the AI Tool](https://ai-fake-job-detectors.streamlit.app/)**
 
-An advanced, AI-powered cybersecurity web application designed to protect job seekers from employment fraud and phishing scams. This tool uses a **Hybrid Risk Scoring Engine** to instantly analyze job descriptions and detect hidden red flags.
+An advanced, AI-powered web application designed to protect job seekers from employment fraud and phishing scams. This tool uses a **Hybrid Risk Scoring Engine** to instantly analyze job descriptions and detect hidden red flags.
 
 ---
 
