@@ -1,5 +1,6 @@
 import os
 import sys
+import time  # ADDED: For UI animation sleep timer
 import pandas as pd
 import streamlit as st
 import plotly.graph_objects as go  
@@ -27,7 +28,7 @@ HISTORY_FILE = os.path.join(BASE_DIR, "history.csv")
 # ==========================================
 if "job_text" not in st.session_state:
     st.session_state.job_text = ""
-if "salary_text" not in st.session_state: #  NAYA: Salary ka state
+if "salary_text" not in st.session_state: 
     st.session_state.salary_text = ""
 
 # =========================
@@ -49,7 +50,6 @@ if uploaded_file is not None:
         with pdfplumber.open(uploaded_file) as pdf:
             extracted_text = ""
             for page in pdf.pages:
-                #  EXACT FIX YAHAN HAI: Pehle text nikalna, fir usko jodna
                 text_content = page.extract_text()
                 if text_content:
                     extracted_text += text_content + "\n"
@@ -96,8 +96,19 @@ if st.button(" Analyze Job"):
     if not text.strip():
         st.warning(" Please enter a job description before analyzing.")
     else:
-        # Call the backend ML pipeline
-        res = predict({"text": text, "salary": salary})
+        # UX IMPROVEMENT: Adding a spinner for a "Live AI" feel
+        with st.spinner("🤖 AI Brain is analyzing text and scanning for fraud patterns..."):
+            time.sleep(1.5)  # Pause for dramatic UX effect
+            # Call the backend ML pipeline
+            res = predict({"text": text, "salary": salary})
+            
+        # UX IMPROVEMENT: Success toast notification
+        st.toast("Analysis Complete!", icon="✅")
+        
+        # UX IMPROVEMENT: Celebration balloons if the job is highly safe
+        if res["risk"] < 20:
+            st.balloons()
+            
         st.markdown("---")
         # Define a 2-column layout for the results dashboard
         col1, col2 = st.columns([1.5, 1])
@@ -149,14 +160,16 @@ if st.button(" Analyze Job"):
             m1, m2 = st.columns(2)
             m1.metric(label=" Email Status", value=res["email_status"].replace("_", " ").title())
             m2.metric(label=" Company Status", value=res["company_status"].replace("_", " ").title())
-            # Display human-readable logic from the Rule Engine
-            st.write("###  Rule Engine Explanation") 
+            
+            # UX IMPROVEMENT: Changed heading from "Rule Engine" to user-friendly text
+            st.write("### 🔍 Risk Factors Detected") 
             for r in res["explanation"]:
                 st.write(f"- {r}")
+                
             # Render the HTML from the LIME explainer    
-            st.write("### AI Brain (Word Analysis)")
+            st.write("### 🧠 AI Brain (Word Analysis)")
             st.markdown("*Transparency Report: Words highlighted in **Red** indicate fraud risk, while **Green** indicates legitimacy.*")
-            components.html(res["lime_html"], height=500, scrolling=False)
+            components.html(res["lime_html"], height=350, scrolling=True)
 
 
         # =========================
@@ -185,7 +198,7 @@ if st.button(" Analyze Job"):
 st.markdown("---")
 
 # =========================
-#  UI IMPROVEMENT 3: History Expander
+# HISTORY EXPANDER
 # Allows users to view and clear their recent scans
 # =========================
 with st.expander(" View Analysis History"):
@@ -198,5 +211,4 @@ with st.expander(" View Analysis History"):
             st.rerun()
     else:
         st.info("No history yet")
-
         

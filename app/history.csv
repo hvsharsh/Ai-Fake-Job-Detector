@@ -1,14 +1,3 @@
 prediction,risk,email,company
-FAKE,80,unknown_email,verified
-FAKE,65,unknown_email,not_found
+FAKE,100,free_email,not_found
 FAKE,100,no_email,not_found
-FAKE,65,unknown_email,not_found
-FAKE,100,no_email,not_found
-FAKE,80,unknown_email,verified
-FAKE,100,no_email,not_found
-FAKE,60,free_email,verified
-FAKE,93,free_email,not_found
-REAL,1,company_email,verified
-REAL,1,company_email,verified
-FAKE,93,free_email,not_found
-REAL,1,company_email,verified
