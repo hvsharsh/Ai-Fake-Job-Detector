@@ -42,7 +42,7 @@ st.markdown("---")
 # Allows users to upload a PDF. Extracts text and isolates salary figures.
 # =========================
 st.write("### Upload Job Offer / JD (Optional)")
-uploaded_file = st.file_uploader("Koi PDF file upload karo, AI khud padh lega!", type=["pdf"])
+uploaded_file = st.file_uploader("Upload your job description PDF, and let the AI do the reading!", type=["pdf"])
 
 if uploaded_file is not None:
     try:
