@@ -68,7 +68,7 @@ if uploaded_file is not None:
 
         # Route the remaining text to the Job Description input box state
         st.session_state.job_text = extracted_text
-        st.success("Text successfully extracted from PDF! Neeche text box mein auto-fill ho gaya hai.")
+        st.success("Text successfully extracted from PDF!")
     except Exception as e:
         st.error(f" Error reading PDF: {e}")
 
