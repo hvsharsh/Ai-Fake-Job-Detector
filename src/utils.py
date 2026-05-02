@@ -93,7 +93,7 @@ def email_check(text):
 def company_check(text):
     text = text.lower()
 
-    # Naya code: \b ensures exact word match
+    # New code: \b ensures exact word match
     if any(re.search(rf'\b{c}\b', text) for c in KNOWN_COMPANIES):
         return True
 
